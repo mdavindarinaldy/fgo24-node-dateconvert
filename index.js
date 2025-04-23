@@ -3,29 +3,30 @@ import readline from "readline/promises";
 
 // Menggunakan external packages moment
 async function main() {
-    try {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        });
-        const input = await rl.question('Masukkan tanggal : ')
-        // rl.question('Masukkan tanggal : ', function(input) {
-        if (moment(input,'DD-MM-YYYY').isValid()) {
-          console.log(moment(input,'DD-MM-YYYY').format('DD/MM/YYYY'));
-          rl.close();
-        }
-        else { 
-          let err = new Error("Gagal");
-          throw err;
-          // console.log("Format tanggal salah");
-          // main();
-        }
-    //   });
-    } catch(err) {
-        if(err.message === "Gagal") {
-            console.log("Format tanggal salah");
-        }
+  try {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    const input = await rl.question('Masukkan tanggal : ');
+    // rl.question('Masukkan tanggal : ', function(input) {
+    if (moment(input,'DD-MM-YYYY').isValid()) {
+      console.log(moment(input,'DD-MM-YYYY').format('DD/MM/YYYY'));
+      rl.close();
     }
+    else { 
+      let err = new Error("Gagal");
+      rl.close();
+      throw err;
+      // console.log("Format tanggal salah");
+      // main();
+    }
+    //   });
+  } catch(err) {
+    if(err.message === "Gagal") {
+      console.log("Format tanggal salah");
+    }
+  }
 }
 
 // Tanpa external package
